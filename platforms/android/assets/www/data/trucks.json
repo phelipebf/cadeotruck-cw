@@ -1,0 +1,14 @@
+[
+    {
+	"id":2, 
+	"latlng":[
+		-15.879222, 
+		-48.012081
+	], 
+	"nome":"Truck 1", 
+	"descricao":"Hoje, 14:00 - 20:00"
+    },
+    {"id":13, "latlng":[-15.878773, -48.014715], "nome":"Truck 2", "descricao":"Hoje, 14:00 - 20:00"},
+    {"id":42, "latlng":[-15.881348, -48.014130], "nome":"Truck 3", "descricao":"Hoje, 14:00 - 20:00"},
+    {"id":66, "latlng":[-15.883304, -48.012301], "nome":"Truck 4", "descricao":"Hoje, 14:00 - 20:00"}
+]
