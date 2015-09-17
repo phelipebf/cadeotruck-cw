@@ -1,0 +1,88 @@
+<!--<md-card class="md-marg" style="width:100%; height: {{height}}px;">-->
+<md-card class="md-marg">
+    <div class="card-img">        
+        <img ng-src="img/capa.png" class="md-card-image" alt="Food Truck" />
+        <md-button class="md-fab md-mini bt-over-image" aria-label="Navegar" ng-click="navegar()">
+            <md-icon md-svg-src="img/icons/navigation.svg"></md-icon>
+        </md-button>
+    </div>
+    <!--<md-card-content class="md-pad">            
+          <h2 class="md-title">Paracosm</h2>
+          <p>
+            The titles of Washed Out's breakthrough song and the first single from Paracosm share the
+            two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+          </p>
+    </md-card-content>-->
+    
+    <!--<div class="md-actions" layout="row" layout-align="end center">
+      <md-button>Action 1</md-button>
+      <md-button>Action 2</md-button>
+    </div>-->
+</md-card>
+
+<div class="tabsdemoDynamicHeight">
+<!--<div>-->
+    <md-content class="md-pad">
+        <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
+        <!--<md-tabs md-border-bottom md-stretch-tabs="always" style="height: 325px;">-->
+            <md-tab label="agenda"> 
+		<md-list class="md-pad">
+                    <md-list-item class="md-3-line md-pad-left" ng-repeat="item in agenda">
+                        <div class="md-list-item-text">
+                            <h3>{{ item.local }}</h3>
+                            <h4 style="line-height: 100%;">{{ item.descricao }}</h4>
+                            <p>R$ {{ item.preco }}</p>
+                        </div>                        
+                    </md-list-item>
+                </md-list>
+		               
+                <!--<md-content class="md-padding">
+                    <h1 class="md-display-1">Tab One</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </md-content> -->
+            </md-tab>
+
+            <!--<md-tab label="atividades">
+                <md-content class="md-padding">
+                    <h1 class="md-display-2">Tab Two</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
+            </md-tab>-->
+
+            <md-tab label="cardápio">
+                <md-card class="md-marg" ng-repeat="item in cardapio.cardapio"> 
+                    <div class="card-img">
+                        <img ng-src="http://truckfinder-phelipebf.rhcloud.com/api/web/img/prato/{{item.foto}}" class="md-card-image" alt="Food Truck" />                    
+                    </div>
+                    <md-card-content class="md-list-item-text md-pad-left">            
+                        <!--<h2 class="md-title">{{ item.prato }}</h2>-->
+                        <h4 style="height: 5px;">{{ item.prato }} - R$ {{ item.preco }}</h4>                        
+                        <p style="line-height: 100%; padding-bottom: 30px;">{{ item.descricao }}</p>                        
+                    </md-card-content>
+                    
+                    <md-divider></md-divider>
+
+                    <!--<div class="md-actions" layout="row" layout-align="end center">
+                      <md-button>Action 1</md-button>
+                      <md-button>Action 2</md-button>
+                    </div>-->
+                </md-card>
+                <!--<md-list class="md-pad">
+                    <md-list-item class="md-3-line md-pad-left" ng-repeat="item in cardapio">
+                        <div class="md-list-item-text">
+                            <h3>{{ item.prato }}</h3>
+                            <h4 style="line-height: 100%;">{{ item.descricao }}</h4>
+                            <p>R$ {{ item.preco }}</p>
+                        </div>
+                        <img ng-src="http://truckfinder-phelipebf.rhcloud.com/api/web/img/prato/{{item.foto}}" class="md-avatar md-pad" alt="{{ item.prato }}" height="91"/>
+                    </md-list-item>
+                </md-list> -->
+                <!--<md-content class="md-padding" ng-repeat="item in cardapio">
+                    <h1 class="md-display">{{item.prato}}</h1>
+                    <p>{{item.descricao}}</p><p>{{item.preco}}</p>
+                </md-content> -->
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>
+
+<!-- Truck {{id}} -->

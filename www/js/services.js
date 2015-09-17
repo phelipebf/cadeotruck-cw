@@ -30,18 +30,18 @@ appServices.factory('FoodTruck', function ($http) {
     return obj;
 });
 
-appServices.factory('Cardapio', function ($http, $scope) {
+appServices.factory('Cardapio', function ($http) {
     var cardapioList;
     var obj = {};
     obj = {
-        getCardapio: function (callback) {
-            if (cardapioList) {
+        getCardapio: function (id, callback) {
+            /*if (cardapioList) {
                 callback(cardapioList);
                 return false;
-            } else {
+            } else { */
                 $http({
                     method: 'GET',
-                    url: 'http://truckfinder-phelipebf.rhcloud.com/api/web/v1/food-trucks/' + $scope.id + '?expand=cardapio',
+                    url: 'http://truckfinder-phelipebf.rhcloud.com/api/web/v1/food-trucks/' + id + '?expand=cardapio',
                     //url: 'http://truckfinder-phelipebf.rhcloud.com/api/web/v1/cardapios'
                 }).success(function (data) {
                     // erros
@@ -50,10 +50,39 @@ appServices.factory('Cardapio', function ($http, $scope) {
                 }).error(function () {
                     //error
                 });
-            }
+            //}
         },
         saveCardapio: function (data) {
             cardapioList = data;
+        }
+    }
+    return obj;
+});
+
+appServices.factory('Agenda', function ($http) {
+    var agendaList;
+    var obj = {};
+    obj = {
+        getAgenda: function (id, callback) {
+            /*if (cardapioList) {
+                callback(cardapioList);
+                return false;
+            } else { */
+                $http({
+                    method: 'GET',
+                    url: 'http://truckfinder-phelipebf.rhcloud.com/api/web/v1/food-trucks/' + id + '?expand=agenda',
+                    //url: 'http://truckfinder-phelipebf.rhcloud.com/api/web/v1/cardapios'
+                }).success(function (data) {
+                    // erros
+                    obj.saveAgenda(data);
+                    callback(data);
+                }).error(function () {
+                    //error
+                });
+            //}
+        },
+        saveAgenda: function (data) {
+            agendaList = data;
         }
     }
     return obj;

@@ -13,6 +13,13 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
+    },
+    {
         "file": "plugins/plugin.http.request/www/http-request.js",
         "id": "plugin.http.request.phonegap-http-requst",
         "clobbers": [
@@ -26,6 +33,7 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.0.0",
     "cordova-plugin-crosswalk-webview": "1.2.0",
     "plugin.google.maps": "1.2.5",
+    "cordova-plugin-splashscreen": "2.1.0",
     "plugin.http.request": "1.0.4",
     "com.google.playservices": "23.0.0"
 }

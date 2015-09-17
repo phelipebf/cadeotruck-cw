@@ -16,4 +16,4 @@
     <item
         android:color="@color/common_signin_btn_dark_text_default" />
 </selector>
-<!-- From: file:/home/android-sdk/Cordova5/CadeOTruck/platforms/android/com.google.playservices/cadeotruck-google-play-services_lib/res/color/common_signin_btn_text_dark.xml -->
+<!-- From: file:/home/phelipe/android-sdk/Cordova5/CadeOTruck/platforms/android/com.google.playservices/cadeotruck-google-play-services_lib/res/color/common_signin_btn_text_dark.xml -->

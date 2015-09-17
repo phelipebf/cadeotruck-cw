@@ -4,6 +4,8 @@ appControllers.controller('AppCtrl', ['$scope', '$mdSidenav', function($scope, $
     $scope.toggleSidenav = function(menuId) {
         $mdSidenav(menuId).toggle();        
     }; 
+    
+   
 }])
 
 appControllers.controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
@@ -92,10 +94,9 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$window', '$mdDialog
                 // Markers
                 // TODO: Implementar serviço REST para buscar markers/trucks
                 var foodTrucks = [
-                    {"id":2, "latlng":[-15.879222, -48.012081], "nome":"Burguer Truck", "descricao":"Hoje, 14:00 - 20:00"},
-                    {"id":13, "latlng":[-15.878773, -48.014715], "nome":"Chili na Rua", "descricao":"Hoje, 14:00 - 20:00"},
-                    {"id":42, "latlng":[-15.881348, -48.014130], "nome":"Sushi Truck", "descricao":"Hoje, 14:00 - 20:00"},
-                    {"id":66, "latlng":[-15.883304, -48.012301], "nome":"Sucopira", "descricao":"Hoje, 14:00 - 20:00"},
+                    {"id":2, "latlng":[-15.879222, -48.012081], "nome":"Geleia", "descricao":"Hoje, 14:00 - 20:00"},
+                    {"id":1, "latlng":[-15.878773, -48.014715], "nome":"Bistruck", "descricao":"Hoje, 14:00 - 20:00"},
+                    {"id":3, "latlng":[-15.881348, -48.014130], "nome":"Teste Truck", "descricao":"Hoje, 14:00 - 20:00"},                    
                 ];
                 
 //                var foodTrucks = null;
@@ -134,7 +135,7 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$window', '$mdDialog
                                 $rootScope.myLocation = myLocation;
                                 $rootScope.latLng = latLng;
                                 
-                                $window.location.href = "#/truck/" + info.id;                                
+                                $window.location.href = "#/truck/" + info.id;
                                 
                                 /* plugin.google.maps.external.launchNavigation({
                                     "from": myLocation,
@@ -146,6 +147,9 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$window', '$mdDialog
 
                     return latLng;
                 });
+
+		// Quando terminar de carregar o mapa, esconde a splash screen e exibe o app
+		navigator.splashscreen.hide();
 
                 map.moveCamera({
                     "target": bounds
@@ -174,8 +178,10 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$window', '$mdDialog
     }
 }]);
 
-appControllers.controller('Truck', function($scope, $rootScope, $routeParams, Cardapio, FoodTruck){    
+appControllers.controller('Truck', function($scope, $rootScope, $routeParams, FoodTruck, Cardapio, Agenda){    
+    
     $scope.id = $routeParams.id;
+        
     $scope.height = window.innerHeight 
             - document.getElementsByTagName('md-toolbar')[0].clientHeight
             - document.getElementsByTagName('md-card')[0].clientHeight
@@ -185,9 +191,16 @@ appControllers.controller('Truck', function($scope, $rootScope, $routeParams, Ca
     
     $scope.cardapio = {};
                 
-    Cardapio.getCardapio(function(data) {
+    Cardapio.getCardapio($scope.id, function(data) {
         //debugger;
         $scope.cardapio = data;
+    });
+
+    $scope.agenda = {};
+                
+    Agenda.getAgenda($scope.id, function(data) {
+        //debugger;
+        $scope.agenda = data;
     });
     
     

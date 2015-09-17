@@ -25,21 +25,33 @@
     <md-content class="md-pad">
         <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
         <!--<md-tabs md-border-bottom md-stretch-tabs="always" style="height: 325px;">-->
-            <md-tab label="agenda">                
-                <md-content class="md-padding">
+            <md-tab label="agenda"> 
+		<md-list class="md-pad">
+                    <md-list-item class="md-3-line md-pad-left" ng-repeat="item in agenda">
+                        <div class="md-list-item-text">
+                            <h3>{{ item.local }}</h3>
+                            <h4 style="line-height: 100%;">{{ item.descricao }}</h4>
+                            <!--<p>R$ {{ item.preco }}</p>-->
+                        </div>                        
+                    </md-list-item>
+                </md-list>
+		               
+                <!--<md-content class="md-padding">
                     <h1 class="md-display-1">Tab One</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </md-content>
+                </md-content> -->
             </md-tab>
+
             <!--<md-tab label="atividades">
                 <md-content class="md-padding">
                     <h1 class="md-display-2">Tab Two</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
             </md-tab>-->
+
             <md-tab label="cardápio">
-                <md-card class="md-marg" ng-repeat="item in cardapio"> 
+                <md-card class="md-marg" ng-repeat="item in cardapio.cardapio"> 
                     <div class="card-img">
-                        <img ng-src="http://truckfinder-phelipebf.rhcloud.com/api/web/img/{{item.foto}}" class="md-card-image" alt="Food Truck" />                    
+                        <img ng-src="http://truckfinder-phelipebf.rhcloud.com/api/web/img/prato/{{item.foto}}" class="md-card-image" alt="Food Truck" />                    
                     </div>
                     <md-card-content class="md-list-item-text md-pad-left">            
                         <!--<h2 class="md-title">{{ item.prato }}</h2>-->
@@ -61,7 +73,7 @@
                             <h4 style="line-height: 100%;">{{ item.descricao }}</h4>
                             <p>R$ {{ item.preco }}</p>
                         </div>
-                        <img ng-src="http://truckfinder-phelipebf.rhcloud.com/api/web/img/{{item.foto}}" class="md-avatar md-pad" alt="{{ item.prato }}" height="91"/>
+                        <img ng-src="http://truckfinder-phelipebf.rhcloud.com/api/web/img/prato/{{item.foto}}" class="md-avatar md-pad" alt="{{ item.prato }}" height="91"/>
                     </md-list-item>
                 </md-list> -->
                 <!--<md-content class="md-padding" ng-repeat="item in cardapio">

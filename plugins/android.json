@@ -31,6 +31,10 @@
                         {
                             "xml": "<feature name=\"Geocoder\"><param name=\"android-package\" value=\"plugin.google.maps.MyGeocoder\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -90,6 +94,9 @@
         },
         "plugin.google.maps": {
             "API_KEY_FOR_ANDROID": "AIzaSyAZMFes1U-o7bI45bmKm6OkQd1YZz76i1A",
+            "PACKAGE_NAME": "com.accelinova.cadeotruck"
+        },
+        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.accelinova.cadeotruck"
         }
     },
