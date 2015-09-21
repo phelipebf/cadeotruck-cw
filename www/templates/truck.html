@@ -27,13 +27,15 @@
         <!--<md-tabs md-border-bottom md-stretch-tabs="always" style="height: 325px;">-->
             <md-tab label="agenda"> 
 		<md-list class="md-pad">
-                    <md-list-item class="md-3-line md-pad-left" ng-repeat="item in agenda">
+                    <md-list-item class="md-3-line md-pad-left" ng-repeat="item in agenda.agenda">
                         <div class="md-list-item-text">
-                            <h3>{{ item.local }}</h3>
+                            <h3>{{ item.local }} {{ item.data }} {{ item.hora_inicio }} - {{ item.hora_fim }}</h3>
                             <h4 style="line-height: 100%;">{{ item.descricao }}</h4>
-                            <!--<p>R$ {{ item.preco }}</p>-->
-                        </div>                        
-                    </md-list-item>
+                            <p>{{ item.endereco }}</p>
+                        </div>     
+                                                
+                        <md-divider></md-divider>
+                    </md-list-item>                    
                 </md-list>
 		               
                 <!--<md-content class="md-padding">

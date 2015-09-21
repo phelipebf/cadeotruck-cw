@@ -5,10 +5,10 @@ appServices.factory('FoodTruck', function ($http) {
     var obj = {};
     obj = {
         getFoodTrucks: function (callback) {
-            if (foodTruckList) {
-                callback(foodTruckList);
-                return false;
-            } else {
+//            if (foodTruckList) {
+//                callback(foodTruckList);
+//                return false;
+//            } else {
                 $http({
                     method: 'GET',
                     url: 'http://truckfinder-phelipebf.rhcloud.com/api/web/v1/food-trucks?expand=localizacoes',
@@ -21,7 +21,7 @@ appServices.factory('FoodTruck', function ($http) {
                 }).error(function () {
                     //error
                 });
-            }
+//            }
         },
         saveFoodTruck: function (data) {
             foodTruckList = data;
