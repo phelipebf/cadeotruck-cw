@@ -1,7 +1,7 @@
 <!--<md-card class="md-marg" style="width:100%; height: {{height}}px;">-->
 <md-card class="md-marg">
     <div class="card-img">        
-        <img ng-src="img/capa.png" class="md-card-image" alt="Food Truck" />
+        <img ng-src="http://truckfinder-phelipebf.rhcloud.com/api/web/img/fachada/{{food_truck.foto_fachada}}" class="md-card-image" alt="Food Truck" />
         <md-button class="md-fab md-mini bt-over-image" aria-label="Navegar" ng-click="navegar()">
             <md-icon md-svg-src="img/icons/navigation.svg"></md-icon>
         </md-button>
@@ -29,7 +29,8 @@
 		<md-list class="md-pad">
                     <md-list-item class="md-3-line md-pad-left" ng-repeat="item in agenda.agenda">
                         <div class="md-list-item-text">
-                            <h3>{{ item.local }} {{ item.data }} {{ item.hora_inicio }} - {{ item.hora_fim }}</h3>
+                            <!--<h3>{{ item.local }} {{ item.data }} {{ item.hora_inicio }} - {{ item.hora_fim }}</h3>-->
+                            <h3 ng-bind="item.hora_inicio | date:'HH:mm'"></h3>
                             <h4 style="line-height: 100%;">{{ item.descricao }}</h4>
                             <p>{{ item.endereco }}</p>
                         </div>     

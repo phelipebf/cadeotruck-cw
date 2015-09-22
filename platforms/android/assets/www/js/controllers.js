@@ -189,6 +189,13 @@ appControllers.controller('Truck', function($scope, $rootScope, $routeParams, Fo
     
     console.log("Carregou Truck: " + $scope.id + " (route) - " + $scope.height);
     
+    $scope.food_truck = {};
+    
+    FoodTruck.getFoodTrucks($scope.id, function(data) {
+        //debugger;
+        $scope.food_truck = data;
+    });
+    
     $scope.cardapio = {};
                 
     Cardapio.getCardapio($scope.id, function(data) {
