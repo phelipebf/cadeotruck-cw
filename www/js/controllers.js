@@ -74,9 +74,9 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$window', '$mdDialog
                             lat: location.latLng.lat,
                             lng: location.latLng.lng
                         },
-                        'tilt': 60,
-                        'zoom': 18,
-                        'bearing': 140
+                        //'tilt': 60,
+                        'zoom': 11,
+                        //'bearing': 140
                     });
                 }, 
                 function (location) 
@@ -90,26 +90,25 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$window', '$mdDialog
 
                     alert("Erro: Impossível determinar localização\n" + msg);
                 });
+                
+                /*var food_trucks = {};
+                var foodTrucks = [];
+
+                FoodTruck.getFoodTrucks(function(data) {        
+                    food_trucks = data;        
+                    food_trucks.map(function(truck) {                        
+                        foodTrucks[foodTrucks.length] = {"id":truck.id, "latlng":[truck.localizacoes[0].latitude, truck.localizacoes[0].longitude], "nome":truck.nome, "descricao":truck.descricao};
+                    });
+                    //debugger;
+                });*/
 
                 // Markers
                 // TODO: Implementar serviço REST para buscar markers/trucks
                 var foodTrucks = [
-                    {"id":2, "latlng":[-15.879222, -48.012081], "nome":"Geleia", "descricao":"Hoje, 14:00 - 20:00"},
-                    {"id":1, "latlng":[-15.878773, -48.014715], "nome":"Bistruck", "descricao":"Hoje, 14:00 - 20:00"},
+                    {"id":2, "latlng":[-15.822863, -47.987826], "nome":"Geleia", "descricao":"Hoje, 14:00 - 20:00"},
+                    {"id":1, "latlng":[-15.817248, -47.907145], "nome":"Bistruck", "descricao":"Hoje, 14:00 - 20:00"},
                     {"id":3, "latlng":[-15.881348, -48.014130], "nome":"Teste Truck", "descricao":"Hoje, 14:00 - 20:00"},                    
                 ];
-                
-//                var foodTrucks = null;
-//                                
-//                FoodTruck.getFoodTrucks(function(data) {
-//                    //debugger;
-//                    foodTrucks = data;
-//                    
-////                    var arrFoodTrucks = [];
-////                    for (var elem in foodTrucks) {
-////                       arrFoodTrucks.push(foodTrucks[elem]);
-////                    }
-//                });
                         
 
                 // Itera a lista de markers e adiciona os markers no mapa
@@ -191,7 +190,7 @@ appControllers.controller('Truck', function($scope, $rootScope, $routeParams, Fo
     
     $scope.food_truck = {};
     
-    FoodTruck.getFoodTrucks($scope.id, function(data) {
+    FoodTruck.getFoodTruck($scope.id, function(data) {
         //debugger;
         $scope.food_truck = data;
     });
@@ -211,19 +210,18 @@ appControllers.controller('Truck', function($scope, $rootScope, $routeParams, Fo
     });
     
     
-    //$scope.foodTrucks = {};
-//    var foodTrucks = {};
-//    FoodTruck.getFoodTrucks(function(data) {
-//        
-//        foodTrucks = data;
-//        
-//        var arrFoodTrucks = [];
-//        for (var elem in foodTrucks) {
-//           arrFoodTrucks.push(foodTrucks[elem]);
-//        }
-//        
-//        debugger;
-//    });
+    
+    /*var food_trucks = {};
+    var foodTrucks = [];
+
+    FoodTruck.getFoodTrucks(function(data) {        
+        food_trucks = data;        
+        food_trucks.map(function(info) {                        
+            foodTrucks[foodTrucks.length] = {"id":info.id, "latlng":[info.localizacoes[0].latitude, info.localizacoes[0].longitude], "nome":info.nome, "descricao":info.descricao};
+        });
+        debugger;
+    }); */
+    
     
     $scope.navegar = function() {
                         
