@@ -91,61 +91,63 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$window', '$mdDialog
                     alert("Erro: Impossível determinar localização\n" + msg);
                 });
                 
-                /*var food_trucks = {};
-                var foodTrucks = [];
-
+                var food_trucks = {};
+                
                 FoodTruck.getFoodTrucks(function(data) {        
+                    var foodTrucks = [];
                     food_trucks = data;        
                     food_trucks.map(function(truck) {                        
                         foodTrucks[foodTrucks.length] = {"id":truck.id, "latlng":[truck.localizacoes[0].latitude, truck.localizacoes[0].longitude], "nome":truck.nome, "descricao":truck.descricao};
                     });
                     //debugger;
-                });*/
+                    
+                    // Itera a lista de markers e adiciona os markers no mapa
+                    //var bounds = foodTrucks.map(function(info) {
+                    var bounds = foodTrucks.map(function(info) {
+                        var latLng = new plugin.google.maps.LatLng(info.latlng[0], info.latlng[1]);
+                        //var latLng = new plugin.google.maps.LatLng(info.localizacoes[0].latitude, info.localizacoes[0].longitude);
+
+                        map.addMarker({
+                            "position": latLng,                        
+                            "title": info.nome,
+                            "snippet": info.descricao,
+                            icon: "orange"
+                        }, function(marker) {
+                                marker.showInfoWindow();
+
+                                /**
+                                 * Ao clicar no info window (balão informativo) acima
+                                 * do marker, chama sistema de navegação do aparelho 
+                                 */
+                                marker.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {
+
+                                    $rootScope.myLocation = myLocation;
+                                    $rootScope.latLng = latLng;
+
+                                    $window.location.href = "#/truck/" + info.id;
+
+                                    /* plugin.google.maps.external.launchNavigation({
+                                        "from": myLocation,
+                                        "to": latLng
+                                    }); */
+                                });
+                            }
+                        );                
+
+                        return latLng;
+                    });
+                });
 
                 // Markers
                 // TODO: Implementar serviço REST para buscar markers/trucks
-                var foodTrucks = [
-                    {"id":2, "latlng":[-15.822863, -47.987826], "nome":"Geleia", "descricao":"Hoje, 14:00 - 20:00"},
+                /*var foodTrucks = [
+                    {"id":2, "latlng":[-15.822863, -47.987826], "nome":"Geléia", "descricao":"Sanduíche no pão australiano. Hoje, 14:00 - 20:00"},
                     {"id":1, "latlng":[-15.817248, -47.907145], "nome":"Bistruck", "descricao":"Hoje, 14:00 - 20:00"},
-                    {"id":3, "latlng":[-15.881348, -48.014130], "nome":"Teste Truck", "descricao":"Hoje, 14:00 - 20:00"},                    
-                ];
+                    {"id":3, "latlng":[-15.881348, -48.014130], "nome":"Teste Truck", "descricao":"Food truck fictício. Hoje, 14:00 - 20:00"},                    
+                ];*/
                         
 
-                // Itera a lista de markers e adiciona os markers no mapa
-                //var bounds = foodTrucks.map(function(info) {
-                var bounds = foodTrucks.map(function(info) {
-                    var latLng = new plugin.google.maps.LatLng(info.latlng[0], info.latlng[1]);
-                    //var latLng = new plugin.google.maps.LatLng(info.localizacoes[0].latitude, info.localizacoes[0].longitude);
-
-                    map.addMarker({
-                        "position": latLng,                        
-                        "title": info.nome,
-                        "snippet": info.descricao,
-                        icon: "orange"
-                    }, function(marker) {
-                            marker.showInfoWindow();
-
-                            /**
-                             * Ao clicar no info window (balão informativo) acima
-                             * do marker, chama sistema de navegação do aparelho 
-                             */
-                            marker.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {
-                                
-                                $rootScope.myLocation = myLocation;
-                                $rootScope.latLng = latLng;
-                                
-                                $window.location.href = "#/truck/" + info.id;
-                                
-                                /* plugin.google.maps.external.launchNavigation({
-                                    "from": myLocation,
-                                    "to": latLng
-                                }); */
-                            });
-                        }
-                    );                
-
-                    return latLng;
-                });
+                
 
 		// Quando terminar de carregar o mapa, esconde a splash screen e exibe o app
 		navigator.splashscreen.hide();
@@ -212,13 +214,20 @@ appControllers.controller('Truck', function($scope, $rootScope, $routeParams, Fo
     
     
     /*var food_trucks = {};
-    var foodTrucks = [];
-
+    var foodTrucks = [];    
+    
     FoodTruck.getFoodTrucks(function(data) {        
         food_trucks = data;        
         food_trucks.map(function(info) {                        
             foodTrucks[foodTrucks.length] = {"id":info.id, "latlng":[info.localizacoes[0].latitude, info.localizacoes[0].longitude], "nome":info.nome, "descricao":info.descricao};
         });
+        
+        var trucks = [
+                    {"id":2, "latlng":[-15.822863, -47.987826], "nome":"Geleia", "descricao":"Hoje, 14:00 - 20:00"},
+                    {"id":1, "latlng":[-15.817248, -47.907145], "nome":"Bistruck", "descricao":"Hoje, 14:00 - 20:00"},
+                    {"id":3, "latlng":[-15.881348, -48.014130], "nome":"Teste Truck", "descricao":"Hoje, 14:00 - 20:00"},                    
+                ];        
+        
         debugger;
     }); */
     
