@@ -70,6 +70,8 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$mdSidenav', '$windo
                                         
             var div = document.getElementById("map_canvas");
         
+            bounds = null;
+        
             map = plugin.google.maps.Map.getMap(div, {
                 'controls': {
                     'compass': true,
@@ -85,7 +87,8 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$mdSidenav', '$windo
                 {
                     myLocation = location.latLng;
 
-                    map.animateCamera({                
+                    //map.animateCamera({
+                    map.moveCamera({
                         'target': {
                             lat: location.latLng.lat,
                             lng: location.latLng.lng
@@ -93,6 +96,8 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$mdSidenav', '$windo
                         //'tilt': 60,
                         'zoom': 11,
                         //'bearing': 140
+                    }, function() {
+                        alert("Mapa carregado");
                     });
                 }, 
                 function (location) 
@@ -169,9 +174,9 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$mdSidenav', '$windo
 		// Quando terminar de carregar o mapa, esconde a splash screen e exibe o app
 		navigator.splashscreen.hide();
 
-                map.moveCamera({
+                /*map.moveCamera({
                     "target": bounds
-                });
+                });*/
             });
             
         }, false);

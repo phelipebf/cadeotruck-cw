@@ -70,6 +70,8 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$mdSidenav', '$windo
                                         
             var div = document.getElementById("map_canvas");
         
+            bounds = null;
+        
             map = plugin.google.maps.Map.getMap(div, {
                 'controls': {
                     'compass': true,
@@ -85,7 +87,8 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$mdSidenav', '$windo
                 {
                     myLocation = location.latLng;
 
-                    map.animateCamera({                
+                    //map.animateCamera({
+                    map.moveCamera({
                         'target': {
                             lat: location.latLng.lat,
                             lng: location.latLng.lng
@@ -93,6 +96,8 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$mdSidenav', '$windo
                         //'tilt': 60,
                         'zoom': 11,
                         //'bearing': 140
+                    }, function() {
+                        alert("Mapa carregado");
                     });
                 }, 
                 function (location) 
@@ -119,7 +124,7 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$mdSidenav', '$windo
                     
                     // Itera a lista de markers e adiciona os markers no mapa
                     //var bounds = foodTrucks.map(function(info) {
-                    var bounds = foodTrucks.map(function(info) {
+                    bounds = foodTrucks.map(function(info) {
                         var latLng = new plugin.google.maps.LatLng(info.latlng[0], info.latlng[1]);
                         //var latLng = new plugin.google.maps.LatLng(info.localizacoes[0].latitude, info.localizacoes[0].longitude);
 
@@ -169,9 +174,9 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$mdSidenav', '$windo
 		// Quando terminar de carregar o mapa, esconde a splash screen e exibe o app
 		navigator.splashscreen.hide();
 
-                map.moveCamera({
+                /*map.moveCamera({
                     "target": bounds
-                });
+                });*/
             });
             
         }, false);
