@@ -30,6 +30,10 @@ app.config(function($mdThemingProvider, $routeProvider) {
         templateUrl: "templates/cardapio.html",
         controller: "Cardapio"
     })    
+    .when("/login/",{
+        templateUrl: "templates/login.html",
+        controller: "Login"
+    })    
     .otherwise({
         redirectTo: "/"
     });

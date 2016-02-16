@@ -2,33 +2,49 @@ var appControllers = angular.module('appControllers', []);
 
 appControllers.controller('AppCtrl', ['$scope', '$mdSidenav', function($scope, $mdSidenav){
     $scope.toggleSidenav = function(menuId) {
-        $mdSidenav(menuId).toggle();        
-    }; 
-    
-   
-}])
+        $mdSidenav(menuId).toggle();
+    };
+}]);
 
-appControllers.controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+appControllers.controller('LeftCtrl', function ($scope, $mdSidenav, $log, $window, $location) {
     $scope.close = function () {
       $mdSidenav('left').close()
         .then(function () {
-            //$log.debug("close LEFT is done");            
+            //$log.debug("close LEFT is done");
         });        
     };
     
-    $scope.menus = [{
-      //icone : imagePath,      
-      titulo: "Mapa"
-    }, {
-      //icone : imagePath,      
-      titulo: "Agenda"
-    }, {
-      //icone : imagePath,      
-      titulo: "Eventos"
-    }];
-  });
+    $scope.redirect = function(url, refresh) {
+        if(refresh || $scope.$$phase) {
+            $window.location.href = url;
+        } else {
+            $location.path(url);
+            $scope.$apply();
+        }
+        
+        $mdSidenav('left').close()
+    }
+    
+    $scope.menus = [
+        {
+          //icone : imagePath,      
+          titulo: "Login (Trucks)",
+          url: "#/login"
+        }
+        /*{
+          //icone : imagePath,      
+          titulo: "Mapa"
+        }, {
+          //icone : imagePath,      
+          titulo: "Agenda"
+        }, {
+          //icone : imagePath,      
+          titulo: "Eventos"
+        }*/
+    ];
+});
   
-appControllers.controller('Mapa', ['$scope', '$rootScope', '$window', '$mdDialog', 'FoodTruck', function($scope, $rootScope, $window, $mdDialog, FoodTruck){
+appControllers.controller('Mapa', ['$scope', '$rootScope', '$mdSidenav', '$window', '$mdDialog', 'FoodTruck', function($scope, $rootScope, $mdSidenav, $window, $mdDialog, FoodTruck){
         
         var map = null;
         var myLocation = null;
@@ -103,7 +119,7 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$window', '$mdDialog
                     
                     // Itera a lista de markers e adiciona os markers no mapa
                     //var bounds = foodTrucks.map(function(info) {
-                    var bounds = foodTrucks.map(function(info) {
+                    bounds = foodTrucks.map(function(info) {
                         var latLng = new plugin.google.maps.LatLng(info.latlng[0], info.latlng[1]);
                         //var latLng = new plugin.google.maps.LatLng(info.localizacoes[0].latitude, info.localizacoes[0].longitude);
 
@@ -117,7 +133,8 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$window', '$mdDialog
 
                                 /**
                                  * Ao clicar no info window (balão informativo) acima
-                                 * do marker, chama sistema de navegação do aparelho 
+                                 * do marker, carrega página com informações detalhadas
+                                 * do truck
                                  */
                                 marker.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {
 
@@ -176,6 +193,19 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$window', '$mdDialog
             .finally(function() {
                 map.setClickable( true );
             });
+    }
+    
+    $scope.toggleSidenav = function(menuId) {
+        $mdSidenav(menuId).toggle();
+        map.setClickable( false );
+    }
+    
+    $scope.close = function () {
+      $mdSidenav('left').close()
+        .then(function () {
+            //$log.debug("close LEFT is done");
+            map.setClickable( true );
+        });        
     }
 }]);
 
@@ -244,6 +274,25 @@ appControllers.controller('Truck', function($scope, $rootScope, $routeParams, Fo
 appControllers.controller('Cardapio', function($scope, $routeParams){    
     $scope.id = $routeParams.id;
     console.log("Carregou Cardapio: " + $scope.id + " (route)");
+});
+
+appControllers.controller('Login', function($scope, $routeParams){    
+    $scope.id = $routeParams.id;
+    console.log("Carregou Login (route)");
+    
+    //$scope.usario = '';
+    //$scope.text = 'hello';
+    $scope.submit = function() {
+        if ($scope.usuario && $scope.senha) {
+            //$scope.list.push(this.text);
+            //$scope.text = '';
+            alert('LOGIN ' + $scope.usuario + ' ' + $scope.senha);
+        }
+        else
+        {
+            alert('É necessário preencher todos os campos.');
+        }
+    }
 });
 
 appControllers.controller('WidthDemoCtrl', DemoCtrl);
