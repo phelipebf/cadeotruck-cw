@@ -1,5 +1,60 @@
 var appServices = angular.module("appServices", []);
 
+appServices.factory('Login', function ($http) {
+    var user;
+    var obj = {};
+    
+    obj = {
+        autentica: function (username, password, callback) {
+            $http({
+                method: 'POST',                
+                url: 'http://truckfinder-phelipebf.rhcloud.com/api/web/v1/user/login',
+                data: {'username': username, 'password': password},
+                responseType: 'json'
+            }).success(function (response_data) {
+                // erros
+                obj.saveUser(response_data);
+                callback(response_data);
+            }).error(function (response_data) {
+                obj.saveUser(response_data);
+                callback(response_data);
+            });
+        },
+        saveUser: function (response_data) {
+            user = response_data;
+        }
+    };
+    return obj;
+});
+
+appServices.factory('Localizacao', function ($http) {
+    var checkin;
+    var obj = {};
+    
+    obj = {
+        checkin: function (latitude, longitude, id_food_truck, callback) {
+            $http({
+                method: 'POST',                
+                url: 'http://truckfinder-phelipebf.rhcloud.com/api/web/v1/user/checkin',
+                data: {'lat': latitude, 'lon': longitude, 'id_food_truck': id_food_truck},
+                responseType: 'json'
+            }).success(function (response_data) {
+                // erros
+                obj.saveCheckin(response_data);
+                callback(response_data);
+            }).error(function (response_data) {
+                // Error
+                //obj.saveCheckin(response_data);
+                //callback(response_data);
+            });
+        },
+        saveCheckin: function (response_data) {
+            checkin = response_data;
+        }
+    };
+    return obj;
+});
+
 appServices.factory('FoodTruck', function ($http) {
     var foodTruckList;
     var obj = {};

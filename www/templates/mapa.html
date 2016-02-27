@@ -1,5 +1,7 @@
 <div style="width:100%; height: {{height}}px;" flex id="map_canvas">
-    <md-button class="md-fab md-fab-fixed" aria-label="Check-in" ng-click="check_in()">
-        <md-icon md-svg-src="img/icons/check_in.svg"></md-icon>
-    </md-button>
+    <div id="dv_bt_checkin" ng-if="isLogado == true">
+        <md-button class="md-fab md-fab-fixed" id="bt_checkin" aria-label="Check-in" ng-click="check_in()">
+            <md-icon md-svg-src="img/icons/check_in.svg"></md-icon>
+        </md-button>
+    </div>
 </div>
