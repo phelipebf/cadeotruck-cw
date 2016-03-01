@@ -52,11 +52,23 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$mdSidenav', '$windo
         //$scope.foodTrucks = {};
         //$scope.isLogado = false;
         
+        
         // Define tamanho do mapa pra tela toda - altura do top header
         $scope.height = window.innerHeight - document.getElementsByTagName('md-toolbar')[0].clientHeight;
                                         
         document.addEventListener("deviceready", function () {
-                                        
+        
+            var logado = localStorage.getItem("logado");
+            var auth_key = localStorage.getItem("auth_key");
+            if(typeof logado !== 'undefined' && logado == "1" && typeof auth_key !== 'undefined')
+            {
+                $rootScope.isLogado = true;
+            }
+            else
+            {
+                $rootScope.isLogado = false;
+            }
+            
             var div = document.getElementById("map_canvas");
         
             bounds = null;
@@ -186,7 +198,7 @@ appControllers.controller('Mapa', ['$scope', '$rootScope', '$mdSidenav', '$windo
     console.log("Carregou Mapa (route) - " + $rootScope.isLogado);
     
     $scope.check_in = function() {
-        
+                
         Localizacao.checkin(myLocation.lat, myLocation.lng, $scope.truck_logado['id_food_truck'], function(data) {
             //debugger;
             //alert(data.data['auth_key']);
@@ -292,7 +304,7 @@ appControllers.controller('Login', ['$scope', '$rootScope', '$routeParams', '$wi
     //$scope.text = 'hello';
     $scope.submit = function() {
         if ($scope.usuario && $scope.senha) {
-            
+                        
             Login.autentica($scope.usuario, $scope.senha, function(data) {
                 //debugger;
                 //alert(data.data['auth_key']);
@@ -300,7 +312,14 @@ appControllers.controller('Login', ['$scope', '$rootScope', '$routeParams', '$wi
                 {
                     $rootScope.truck_logado = data.data;
                     $rootScope.isLogado = true;
-                    document.getElementById('nome_truck').innerHTML = ',&nbsp' + $rootScope.truck_logado['nome_food_truck'];
+                    
+                    if(localStorage != undefined)
+                    {
+                        localStorage.setItem("logado", "1");
+                        localStorage.setItem("auth_key", data.data['auth_key']);
+                    }
+                    
+                    document.getElementById('nome_truck').innerHTML = ',&nbsp;' + $rootScope.truck_logado['nome_food_truck'];
                     document.getElementById('bt_login').innerHTML = '';                    
                     $window.location.href = "#/mapa/";
                     alert('Bem vindo ' + $rootScope.truck_logado['nome_food_truck'] + '!');                    
