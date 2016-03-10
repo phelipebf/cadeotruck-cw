@@ -1,0 +1,33 @@
+<form ng-submit="submit()" ng-controller="Checkin">
+    <div layout="column" layout-padding ng-cloak>
+      <br/>
+      <md-content class="autoScroll">
+        <br>
+        <md-input-container class="md-icon-float md-block">
+          <!-- Use floating label instead of placeholder -->
+          <!--<label>Usuário</label>-->
+          <md-icon md-svg-src="img/icons/check_in.svg" class="name"></md-icon>
+          <input type="time" name="hora_fim" ng-model="hora_fim" placeholder="Hora Fim" ng-required="true">
+        </md-input-container>
+        <!--<md-input-container class="md-icon-float md-block">
+          <md-icon md-svg-src="img/icons/locker.svg"></md-icon>
+          <input type="password" name="senha" ng-model="senha" placeholder="Senha" ng-required="true">
+        </md-input-container>
+        <md-input-container class="md-block">      
+          <md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
+          <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
+        </md-input-container>
+        <md-input-container md-no-float class="md-block">
+          <input ng-model="user.address" type="text" placeholder="Address" >
+          <md-icon md-svg-src="img/icons/ic_place_24px.svg" style="display:inline-block;"></md-icon>
+        </md-input-container>
+        <md-input-container class="md-icon-float md-icon-right md-block">
+          <label>Donation Amount</label>
+          <md-icon md-svg-src="img/icons/ic_card_giftcard_24px.svg"></md-icon>
+          <input ng-model="user.donation" type="number" step="0.01">
+          <md-icon md-svg-src="img/icons/ic_euro_24px.svg"></md-icon>
+        </md-input-container>-->
+        <md-button type="submit" class="md-button-inner md-raised md-primary">Check-in</md-button>
+      </md-content>
+    </div>
+</form>

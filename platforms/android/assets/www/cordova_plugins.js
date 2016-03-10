@@ -20,6 +20,13 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/cordova-plugin-datepicker/www/android/DatePicker.js",
+        "id": "cordova-plugin-datepicker.DatePicker",
+        "clobbers": [
+            "datePicker"
+        ]
+    },
+    {
         "file": "plugins/plugin.http.request/www/http-request.js",
         "id": "plugin.http.request.phonegap-http-requst",
         "clobbers": [
@@ -34,6 +41,7 @@ module.exports.metadata =
     "cordova-plugin-crosswalk-webview": "1.2.0",
     "plugin.google.maps": "1.2.5",
     "cordova-plugin-splashscreen": "2.1.0",
+    "cordova-plugin-datepicker": "0.9.3",
     "plugin.http.request": "1.0.4",
     "com.google.playservices": "23.0.0"
 }

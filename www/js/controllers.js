@@ -4,6 +4,13 @@ appControllers.controller('AppCtrl', ['$scope', '$mdSidenav', function($scope, $
     $scope.toggleSidenav = function(menuId) {
         $mdSidenav(menuId).toggle();
     };
+    $scope.showTimePicker=function(){
+        var options = {date: new Date(), mode: 'time'};
+        //var options = {date: new Date(), mode: 'date'}; for date
+        datePicker.show(options).then(function(date){
+            alert(date);
+        });
+    };
 }]);
 
 appControllers.controller('LeftCtrl', function ($scope, $mdSidenav, $log, $window, $location) {
@@ -31,6 +38,12 @@ appControllers.controller('LeftCtrl', function ($scope, $mdSidenav, $log, $windo
           titulo: "Login",
           url: "#/login",
           id: "bt_login"
+        },
+        {
+          icone : "img/icons/check_in.svg",
+          titulo: "Checkin",
+          url: "#/checkin",
+          id: "bt_checkin"
         }
         /*{
           //icone : imagePath,      
@@ -296,7 +309,7 @@ appControllers.controller('Cardapio', function($scope, $routeParams){
     console.log("Carregou Cardapio: " + $scope.id + " (route)");
 });
 
-appControllers.controller('Login', ['$scope', '$rootScope', '$routeParams', '$window', 'Login', function($scope, $rootScope, $routeParams, $window, Login){    
+appControllers.controller('Login', ['$scope', '$rootScope', '$routeParams', '$window', '$mdDialog', 'Login', function($scope, $rootScope, $routeParams, $window, $mdDialog, Login){    
     $scope.id = $routeParams.id;
     console.log("Carregou Login (route)");
     
@@ -322,7 +335,19 @@ appControllers.controller('Login', ['$scope', '$rootScope', '$routeParams', '$wi
                     document.getElementById('nome_truck').innerHTML = ',&nbsp;' + $rootScope.truck_logado['nome_food_truck'];
                     document.getElementById('bt_login').innerHTML = '';                    
                     $window.location.href = "#/mapa/";
-                    alert('Bem vindo ' + $rootScope.truck_logado['nome_food_truck'] + '!');                    
+                    
+                    $mdDialog
+                        .show(
+                            $mdDialog.alert()
+                              .title('Login')                          
+                              .content('Bem vindo ' + $rootScope.truck_logado['nome_food_truck'] + '!')
+                              .ok('OK')
+                        )
+    //                    .finally(function() {
+    //                        map.setClickable( true );
+    //                    })
+                        ;                    
+                    
                 }
                 else if(typeof data[0].message !== 'undefined')
                 {
@@ -337,16 +362,60 @@ appControllers.controller('Login', ['$scope', '$rootScope', '$routeParams', '$wi
     }
 }]);
 
-appControllers.controller('WidthDemoCtrl', DemoCtrl);
-function DemoCtrl($mdDialog) {
-  var vm = this;
-  this.announceClick = function(index) {
-    $mdDialog.show(
-      $mdDialog.alert()
-        .title('You clicked!')
-        .content('You clicked the menu item at index ' + index)
-        .ok('Nice')
-    );
-  };
-}
-;
+appControllers.controller('Checkin', ['$scope', '$rootScope', '$routeParams', '$window', '$mdDialog', 'Localizacao', function($scope, $rootScope, $routeParams, $window, $mdDialog, Localizacao){    
+    $scope.id = $routeParams.id;
+    console.log("Carregou Checkin (route)");
+    
+    //$scope.usario = '';
+    //$scope.text = 'hello';
+    $scope.submit = function() {
+        if ($scope.hora_fim) {
+            
+            Localizacao.checkin($rootScope.myLocation.lat, $rootScope.myLocation.lng, $scope.hora_fim, $scope.truck_logado['id_food_truck'], function(data) {
+                //debugger;
+                //alert(data.data['auth_key']);
+                if(typeof data.data !== 'undefined' && data.status == 1)
+                {
+    //                $scope.truck_logado = data.data;
+    //                $rootScope.isLogado = true;
+    //                document.getElementById('nome_truck').innerHTML = ',&nbsp' + $scope.truck_logado['nome_food_truck'];
+    //                document.getElementById('bt_login').innerHTML = '';                                    
+                    alert(data.data['message']);
+                    $window.location.reload();
+                }
+                else if(typeof data.data !== 'undefined')
+                {
+                    $mdDialog
+                        .show(
+                            $mdDialog.alert()
+                              .title('Check-in')                          
+                              .content('Check-in realizado com sucesso.')
+                              .ok('OK')
+                        )
+    //                    .finally(function() {
+    //                        map.setClickable( true );
+    //                    })
+                        ;       
+                }
+                else if(data.status == 0)
+                {
+                    $mdDialog
+                        .show(
+                            $mdDialog.alert()
+                              .title('Check-in')
+                              .content(data.data['message'])
+                              .ok('OK')
+                        )
+    //                    .finally(function() {
+    //                        map.setClickable( true );
+    //                    })
+                        ;
+                }
+            });                                
+        }
+        else
+        {
+            alert('É necessário preencher o campo de hora fim.');
+        }
+    }
+}]);

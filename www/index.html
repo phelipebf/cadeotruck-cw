@@ -42,7 +42,7 @@
       
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">
-        <md-button ng-click="toggleSidenav('left')" class="md-icon-button" ng-controller="Mapa">
+        <md-button ng-click="toggleSidenav('left')" class="md-icon-button">
             <md-icon aria-label="Menu" md-svg-icon="img/icons/menu.svg"></md-icon>
         </md-button>
         <h1>{{ $rootScope.titulo }}</h1>
@@ -93,7 +93,7 @@
     <div layout="row" flex>
         <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
             <md-toolbar class="md-theme-light">
-                <md-button ng-click="close()" class="md-icon-button" ng-controller="Mapa">
+                <md-button ng-click="close()" class="md-icon-button" ng-controller="LeftCtrl">
                     <md-icon aria-label="Menu" md-svg-icon="img/icons/arrow_back.svg"></md-icon>
                 </md-button>                
                 <h1 class="md-toolbar-tools">Bem vindo <div id="nome_truck"></div></h1>                
@@ -107,7 +107,7 @@
                     </li>
                 </ul> -->
                 <md-list>
-                    <md-list-item class="md-6-line" ng-repeat="menu in menus" ng-click="redirect('#/login')">
+                    <md-list-item class="md-6-line" ng-repeat="menu in menus" ng-click="redirect(menu.url)">
                         <div class="md-list-item-text" id="{{menu.id}}">                            
                             <h5><md-icon md-svg-src="{{menu.icone}}"></md-icon>{{menu.titulo}}</h5>
                         </div>

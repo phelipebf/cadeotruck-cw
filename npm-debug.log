@@ -1,0 +1,128 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'cordova@5.0.0',
+1 verbose cli   'cordova5' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.37
+4 verbose node symlink /usr/bin/node
+5 verbose config Skipping project config: /home/phelipe/.npmrc. (matches userconfig)
+6 verbose cache add [ 'cordova@5.0.0', null ]
+7 verbose cache add name=undefined spec="cordova@5.0.0" args=["cordova@5.0.0",null]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: 'cordova@5.0.0',
+8 verbose parsed url   path: 'cordova@5.0.0',
+8 verbose parsed url   href: 'cordova@5.0.0' }
+9 verbose cache add [ 'cordova5', null ]
+10 verbose cache add name=undefined spec="cordova5" args=["cordova5",null]
+11 verbose parsed url { protocol: null,
+11 verbose parsed url   slashes: null,
+11 verbose parsed url   auth: null,
+11 verbose parsed url   host: null,
+11 verbose parsed url   port: null,
+11 verbose parsed url   hostname: null,
+11 verbose parsed url   hash: null,
+11 verbose parsed url   search: null,
+11 verbose parsed url   query: null,
+11 verbose parsed url   pathname: 'cordova5',
+11 verbose parsed url   path: 'cordova5',
+11 verbose parsed url   href: 'cordova5' }
+12 verbose cache add name="cordova" spec="5.0.0" args=["cordova","5.0.0"]
+13 verbose parsed url { protocol: null,
+13 verbose parsed url   slashes: null,
+13 verbose parsed url   auth: null,
+13 verbose parsed url   host: null,
+13 verbose parsed url   port: null,
+13 verbose parsed url   hostname: null,
+13 verbose parsed url   hash: null,
+13 verbose parsed url   search: null,
+13 verbose parsed url   query: null,
+13 verbose parsed url   pathname: '5.0.0',
+13 verbose parsed url   path: '5.0.0',
+13 verbose parsed url   href: '5.0.0' }
+14 verbose addNamed [ 'cordova', '5.0.0' ]
+15 verbose addNamed [ '5.0.0', '5.0.0' ]
+16 silly lockFile b67265a5-cordova-5-0-0 cordova@5.0.0
+17 verbose lock cordova@5.0.0 /home/phelipe/.npm/b67265a5-cordova-5-0-0.lock
+18 silly lockFile 838ca5a1-cordova5 cordova5
+19 verbose lock cordova5 /home/phelipe/.npm/838ca5a1-cordova5.lock
+20 silly lockFile 838ca5a1-cordova5 cordova5
+21 silly lockFile 838ca5a1-cordova5 cordova5
+22 verbose addNamed [ 'cordova5', '' ]
+23 verbose addNamed [ null, '*' ]
+24 silly lockFile b3b06956-cordova5 cordova5@
+25 verbose lock cordova5@ /home/phelipe/.npm/b3b06956-cordova5.lock
+26 silly addNameRange { name: 'cordova5', range: '*', hasData: false }
+27 verbose request where is /cordova
+28 verbose request registry https://registry.npmjs.org/
+29 verbose request id 5fd58cea32729e76
+30 verbose url raw /cordova
+31 verbose url resolving [ 'https://registry.npmjs.org/', './cordova' ]
+32 verbose url resolved https://registry.npmjs.org/cordova
+33 verbose request where is https://registry.npmjs.org/cordova
+34 info trying registry request attempt 1 at 23:42:52
+35 verbose etag "85SV5MFTQCR9FUIBDESP1ACPE"
+36 http GET https://registry.npmjs.org/cordova
+37 verbose request where is /cordova5
+38 verbose request registry https://registry.npmjs.org/
+39 verbose url raw /cordova5
+40 verbose url resolving [ 'https://registry.npmjs.org/', './cordova5' ]
+41 verbose url resolved https://registry.npmjs.org/cordova5
+42 verbose request where is https://registry.npmjs.org/cordova5
+43 info trying registry request attempt 1 at 23:42:52
+44 http GET https://registry.npmjs.org/cordova5
+45 http 304 https://registry.npmjs.org/cordova
+46 silly registry.get cb [ 304,
+46 silly registry.get   { date: 'Sun, 06 Mar 2016 02:42:55 GMT',
+46 silly registry.get     via: '1.1 varnish',
+46 silly registry.get     'cache-control': 'max-age=300',
+46 silly registry.get     etag: '"85SV5MFTQCR9FUIBDESP1ACPE"',
+46 silly registry.get     age: '0',
+46 silly registry.get     connection: 'keep-alive',
+46 silly registry.get     'x-served-by': 'cache-atl6229-ATL',
+46 silly registry.get     'x-cache': 'HIT',
+46 silly registry.get     'x-cache-hits': '1',
+46 silly registry.get     'x-timer': 'S1457232175.807315,VS0,VE82',
+46 silly registry.get     vary: 'Accept' } ]
+47 verbose etag https://registry.npmjs.org/cordova from cache
+48 http 404 https://registry.npmjs.org/cordova5
+49 silly registry.get cb [ 404,
+49 silly registry.get   { 'content-type': 'application/json',
+49 silly registry.get     'cache-control': 'max-age=0',
+49 silly registry.get     'content-length': '2',
+49 silly registry.get     'accept-ranges': 'bytes',
+49 silly registry.get     date: 'Sun, 06 Mar 2016 02:42:55 GMT',
+49 silly registry.get     via: '1.1 varnish',
+49 silly registry.get     age: '0',
+49 silly registry.get     connection: 'keep-alive',
+49 silly registry.get     'x-served-by': 'cache-jfk1028-JFK',
+49 silly registry.get     'x-cache': 'MISS',
+49 silly registry.get     'x-cache-hits': '0',
+49 silly registry.get     'x-timer': 'S1457232175.901468,VS0,VE22' } ]
+50 silly lockFile b3b06956-cordova5 cordova5@
+51 silly lockFile b3b06956-cordova5 cordova5@
+52 silly lockFile b67265a5-cordova-5-0-0 cordova@5.0.0
+53 silly lockFile b67265a5-cordova-5-0-0 cordova@5.0.0
+54 error 404 Not Found
+54 error 404
+54 error 404 'cordova5' is not in the npm registry.
+54 error 404 You should bug the author to publish it
+54 error 404
+54 error 404 Note that you can also install from a
+54 error 404 tarball, folder, or http url, or git url.
+55 error System Linux 3.16.0-30-generic
+56 error command "/usr/bin/node" "/usr/bin/npm" "install" "cordova@5.0.0" "cordova5"
+57 error cwd /home/phelipe/android-sdk/Cordova5/cadeotruck
+58 error node -v v0.10.37
+59 error npm -v 1.4.28
+60 error code E404
+61 verbose exit [ 1, true ]

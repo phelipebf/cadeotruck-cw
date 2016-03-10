@@ -34,6 +34,10 @@ app.config(function($mdThemingProvider, $routeProvider) {
         templateUrl: "templates/login.html",
         controller: "Login"
     })    
+    .when("/checkin/",{
+        templateUrl: "templates/checkin.html",
+        controller: "Checkin"
+    })
     .otherwise({
         redirectTo: "/"
     });

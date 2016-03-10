@@ -32,11 +32,11 @@ appServices.factory('Localizacao', function ($http) {
     var obj = {};
     
     obj = {
-        checkin: function (latitude, longitude, id_food_truck, callback) {
+        checkin: function (latitude, longitude, hora_fim, id_food_truck, callback) {
             $http({
                 method: 'POST',                
                 url: 'http://truckfinder-phelipebf.rhcloud.com/api/web/v1/user/checkin',
-                data: {'lat': latitude, 'lon': longitude, 'id_food_truck': id_food_truck},
+                data: {'lat': latitude, 'lon': longitude, 'hora_fim': hora_fim, 'id_food_truck': id_food_truck},
                 responseType: 'json'
             }).success(function (response_data) {
                 // erros
